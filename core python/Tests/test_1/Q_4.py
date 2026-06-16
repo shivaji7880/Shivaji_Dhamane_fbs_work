@@ -1,10 +1,12 @@
 # taking input
 a=int(input('Enter area of one wall:'))
-cost=int(input('Enter cost both interior and exterior wall:'))
+interior_cost=int(input('Enter interior cost:'))
+exterior_cost=int(input('Enter exterior cost:'))
 #perform operation
-t_area=a*7.5
-actual_area=t_area-a/2
-total_cost=a*cost
+interior_area=8*a
+exterior_area=7*a
+
+total_cost=interior_area*interior_cost+exterior_area*exterior_cost
 
 # Display result
 
