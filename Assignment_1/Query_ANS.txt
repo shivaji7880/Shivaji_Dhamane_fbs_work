@@ -1,0 +1,58 @@
+
+show databases;
+
+*****************************************************************************************
+
+create table countries(country_id int , country_name varchar(20),region_id int);
+desc countries;
+
+*****************************************************************************************
+
+
+create table job(job_id int primary key,job_title varchar(20) not null,min_salary decimal(7,2),max_salary decimal(7,2) check(max_salary<=25000));
+
+******************************************************************************************************************************************************
+
+create table job_history(employee_id int ,start_date varchar(10),end_date varchar(10),job_id int,department_id int);
+
+******************************************************************************************************************************************************
+
+alter table countries
+modify column country_id int unique;
+
+******************************************************************************************************************************************************
+
+create table jobs_default(job_id int,job_title varchar(20) default " ",min_salary decimal(7,2) default 8000,max_salary decimal(7,2));
+
+******************************************************************************************************************************************************
+
+create table departments(department_id decimal(4,0),deparment_name varchar(30) not null,
+manager_id decimal(4,0),location_id decimal(4,0));
+
+alter table departments
+add primary key (department_id,manager_id);
+
+******************************************************************************************************************************************************
+
+create table employees(employee_id int,first_name varchar(15),last__name varchar(15),email varchar(25),phone_number varchar(15),hire_date varchar(10),
+job_id int,salary decimal(7,2),commission decimal(7,2),manager_id int,department_id int);
+
+alter table employees
+add primary key(employee_id);
+
+alter table employees
+add foreign key(department_id)
+references departments(department_id);
+
+******************************************************************************************************************************************************
+
+create table department_managers(department_id decimal(4,0), manager_id decimal(6,0),manager_name varchar(50) not null);
+
+alter table department_manager 
+add primary key(department_id,manager_id);
+
+alter table employees
+add foreign key(department_id,manager_id)
+references department_managers(department_id,manager_id);
+
+******************************************************************************************************************************************************
